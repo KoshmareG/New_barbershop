@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'sinatra'
 require 'sinatra/reloader'
-require 'active_record'
+require 'sinatra/activerecord'
 
 set :database, {adapter: "sqlite3", database: "barbershop.db"}
 
@@ -11,7 +11,6 @@ end
 configure do
   
 end
-
 
 get '/' do
   erb 'Hello'
