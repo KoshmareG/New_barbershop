@@ -16,5 +16,5 @@ configure do
 end
 
 get '/' do
-  erb 'Hello'
+  erb :index
 end
