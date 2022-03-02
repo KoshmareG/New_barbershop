@@ -16,5 +16,6 @@ configure do
 end
 
 get '/' do
+  @barbers = Barber.order "created_at desc"
   erb :index
 end

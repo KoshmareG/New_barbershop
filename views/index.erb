@@ -1,1 +1,4 @@
 <h4>Список наших парикмахеров</h4>
+<% @barbers.each do |barber| %>
+    <p><%= barber.name %></p>
+<% end %>
