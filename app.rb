@@ -26,7 +26,7 @@ def barbers_table
 end
 
 get '/' do
-  barbers_table
+  @contacts = Contact.all
   erb :index
 end
 
