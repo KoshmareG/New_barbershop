@@ -78,6 +78,8 @@ post '/contacts' do
   if @error.size > 0
     return erb :contacts
   else
+    contact = Contact.new :name => "#{@name}", :email => "#{@user_email}", :message => "#{@user_message}"
+    contact.save
     erb "Ваше сообщение отправлено"
   end
 end
