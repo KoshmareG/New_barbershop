@@ -32,6 +32,10 @@ get '/visit' do
   erb :visit
 end
 
+get '/contacts' do
+  erb :contacts
+end
+
 post '/visit' do
   @user_name = params[:user_name]
   @phone_number = params[:phone_number]
@@ -53,5 +57,24 @@ post '/visit' do
     client = Client.new :name => "#{@user_name}", :phone => "#{@phone_number}", :datestamp => "#{@date_time}", :barber => "#{@master}"
     client.save
     erb "#{@user_name}, Вы записаны на посещение #{@date_time} #{@master} будет ждать Вас в указанное время!"
+  end
+end
+
+post '/contacts' do
+  @name = params[:name]
+  @user_email = params[:user_email]
+  @user_message = params[:user_message]
+
+  warning_hash = {  :name => 'Введите имя', 
+                    :user_email => 'Введите E-Mail', 
+                    :user_message => 'Введите сообщение'
+                  }
+  
+  @error = form_validation warning_hash
+
+  if @error.size > 0
+    return erb :contacts
+  else
+    erb "Ваше сообщение отправлено"
   end
 end
