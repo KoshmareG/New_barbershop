@@ -13,15 +13,15 @@
 <form action="/visit" method="POST" role="form">
    <div class="mb-3">
     <label>Ваше имя</label>
-    <input name="client[name]" type="text" class="form-control" value="">
+    <input name="client[name]" type="text" class="form-control" value="<%= @c.name %>">
   </div>
   <div class="mb-3">
     <label>Ваш телефон</label>
-    <input name="client[phone]" type="text" class="form-control" value="">
+    <input name="client[phone]" type="text" class="form-control" value="<%= @c.phone %>">
   </div>
   <div class="mb-3">
     <label>Дата и время</label>
-    <input id="datetimepicker" name="client[datestamp]" type="text" class="form-control" autocomplete="off" value="">
+    <input id="datetimepicker" name="client[datestamp]" type="text" class="form-control" autocomplete="off" value="<%= @c.datestamp %>">
     <div class="form-text">Введите дату и время посещения Barber Shop'а</div>
   </div>
   <button type="submit" class="btn btn-primary">Записаться</button>
