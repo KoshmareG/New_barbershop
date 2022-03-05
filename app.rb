@@ -75,3 +75,7 @@ post '/contacts' do
     erb "Ваше сообщение отправлено"
   end
 end
+
+get '/barber/:id' do
+  erb :barber
+end
