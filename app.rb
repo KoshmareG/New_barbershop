@@ -25,10 +25,11 @@ def form_validation hash
 end
 
 def barbers_table
-  @barbers = Barber.order "created_at desc"
+  @barbers = Barber.all
 end
 
 get '/' do
+  barbers_table
   @contacts = Contact.all
   erb :index
 end
