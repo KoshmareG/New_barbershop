@@ -16,6 +16,9 @@ class Barber < ActiveRecord::Base
 end
 
 class Contact < ActiveRecord::Base
+  validates :name, presence: true
+  validates :email, presence: true
+  validates :message, presence: true
 end
 
 configure do  
@@ -42,6 +45,7 @@ get '/visit' do
 end
 
 get '/contacts' do
+  @contact = Contact.new
   erb :contacts
 end
 
@@ -49,6 +53,7 @@ post '/visit' do
   
   @barbers = Barber.all
   @c = Client.new params[:client]
+
   if @c.save
     erb "Спасибо, Вы записались"
   else
@@ -58,23 +63,14 @@ post '/visit' do
 end
 
 post '/contacts' do
-  @name = params[:name]
-  @user_email = params[:user_email]
-  @user_message = params[:user_message]
 
-  warning_hash = {  :name => 'Введите имя', 
-                    :user_email => 'Введите E-Mail', 
-                    :user_message => 'Введите сообщение'
-                  }
-  
-  @error = form_validation warning_hash
+  @contact = Contact.new params[:contact]
 
-  if @error.size > 0
-    return erb :contacts
-  else
-    contact = Contact.new :name => "#{@name}", :email => "#{@user_email}", :message => "#{@user_message}"
-    contact.save
+  if @contact.save
     erb "Ваше сообщение отправлено"
+  else
+    @error = @contact.errors.full_messages.first
+    erb :contacts
   end
 end
 
