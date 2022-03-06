@@ -9,6 +9,7 @@ class Client < ActiveRecord::Base
   validates :name, presence: true
   validates :phone, presence: true
   validates :datestamp, presence: true
+  validates :barber, presence: true
 end
 
 class Barber < ActiveRecord::Base
@@ -36,6 +37,7 @@ end
 
 get '/visit' do
   @c = Client.new
+  @barbers = Barber.all
   erb :visit
 end
 
@@ -45,6 +47,7 @@ end
 
 post '/visit' do
   
+  @barbers = Barber.all
   @c = Client.new params[:client]
   if @c.save
     erb "Спасибо, Вы записались"
@@ -52,7 +55,6 @@ post '/visit' do
     @error = @c.errors.full_messages.first
     erb :visit
   end
-
 end
 
 post '/contacts' do

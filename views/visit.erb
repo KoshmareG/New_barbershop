@@ -24,5 +24,13 @@
     <input id="datetimepicker" name="client[datestamp]" type="text" class="form-control" autocomplete="off" value="<%= @c.datestamp %>">
     <div class="form-text">Введите дату и время посещения Barber Shop'а</div>
   </div>
+  <div class="mb-3">
+    <select class="form-select" aria-label="Default select example" name="client[barber]">
+      <option value='' >Выберите мастера</option>
+      <% @barbers.each do |barber| %>
+        <option <%= barber.name == @c.barber ? 'selected' : '' %> value=<%= barber.name %>><%= barber.name %></option>
+      <% end %>
+    </select>
+  </div>
   <button type="submit" class="btn btn-primary">Записаться</button>
 </form>
